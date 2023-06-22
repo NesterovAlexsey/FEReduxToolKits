@@ -2,11 +2,13 @@ import authReducer from "./features/auth/authSlice";
 import counterReducer from "./features/counter/counterSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
+import { tasksSlice } from "./features/todos/todoSlice";
 
 const store = configureStore({
     reducer: {
         counter: counterReducer,
-        auth: authReducer
+        auth: authReducer,
+        task:tasksSlice.reducer
     }
 });
 
