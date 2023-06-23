@@ -1,8 +1,11 @@
 import { useRef } from "react";
 import { useAppDispatch } from "../../store";
 import { addTodo } from "./todoSlice";
+import { useSelector } from "react-redux";
+import { selectTodoList } from "./selectors";
 
 export default function Tasks(): JSX.Element {
+  const taskList = useSelector(selectTodoList);
     const data = useRef<string>("");
     const dispatch = useAppDispatch();
 
@@ -17,6 +20,16 @@ export default function Tasks(): JSX.Element {
           />
           <button type="submit">Добавить</button>
         </form>
+        <ul>
+        {taskList.map((el) => (
+          <li key={el.id}>
+            {el.title}
+            <br />
+            {el.done}
+          </li>
+        )
+        )}
+      </ul>
       </>
     );
   }
